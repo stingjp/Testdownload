@@ -1,7 +1,6 @@
 from random import randint
 
 board = []
-
 for x in range(5):
     board.append(["O"] * 5)
 
@@ -46,3 +45,11 @@ for turn in range(4):
         print_board(board)
         if turn == 3:
             print("Game Over")
+
+
+""" Suggestions:
+1. make the game with multiple ships
+2. make the ships different sizes
+3. make it a two player game
+4. add features (functions) so that it allows for statistics and rematches etc. 
+"""
