@@ -1,0 +1,26 @@
+Created a new python file and worked on setting up the edito
+
+# --------------
+# Please enter the commit message for your changes. Everything below
+# this paragraph is ignored, and an empty message aborts the commit.
+# Just close the window to accept your message.
+diff --git a/actualfolder/first.py b/actualfolder/first.py
+new file mode 100644
+index 0000000..43ace21
+--- /dev/null
++++ b/actualfolder/first.py
+@@ -0,0 +1,14 @@
++# test
++import math
++import matplotlib.pyplot as plt
++import numpy as np
++x = np.linspace(-np.pi,np.pi,num=50)
++y = np.sin(x,np.sin(x))
++
++plt.plot(x,y)
++plt.xlabel('Angle [rad]')
++plt.ylabel('sin(x)')
++
++
++plt.show()
++
