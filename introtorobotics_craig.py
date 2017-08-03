@@ -90,7 +90,8 @@ def get_T(k, theta, p):
 		return T
 
 
-
+ # Trial code for the above functions
+ """
 ak = np.array([[0.707], [0.707], [0.0]])
 p = np.array([1, 2, 3])
 
@@ -102,3 +103,23 @@ v = np.array([0, 0, 1])
 theta = 30
 t = []
 print(get_T(v, theta, t))
+"""
+
+# Euler Parameters
+def eul_param(k, theta, *R):
+	phi = theta * np.pi / 180
+	eps1 = k[0] * np.sin(phi / 2)
+	eps2 = k[1] * np.sin(phi / 2)
+	eps3 = k[2] * np.sin(phi / 2)
+	eps4 = np.cos(phi / 2)
+
+	if eps1**2 + eps2**2 + eps3**2 + eps4**2 != 1:
+		print("This is WRONG")
+		return
+	R_eps = np.array([[1 - (2 * eps2**2) - (2 * eps3**2),  2*(eps1*eps2 - eps3*eps4),          2*(eps1*eps3 + eps2*eps4)],
+					  [2*(eps1*eps2 + eps3*eps4),          1 - (2 * eps2**2) - (2 * eps3**2),  2*(eps2*eps3 - eps1*eps4)],
+					  [2*(eps1*eps3 - eps2*eps4),          2*(eps2*eps3 - eps1*eps4),          1 - (2 * eps2**2) - (2 * eps3**2)]])
+
+#### need to put in an optional parameter to figure out the eps values for if a R is input
+# pg 56
+
