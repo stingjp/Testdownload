@@ -55,10 +55,11 @@ def get_zyz_angles(R):
 	return np.array([a, b, c])
 
 # Equivalent angle axis
-def arbitrary_axis_rot(k, R, theta):
+def R_arb_ax(k, theta):
 	# theta is in degrees, so make sure it is converted to radians
 	phi = theta*np.pi/180
-	Rk = np.array([[k[0]**2 * (1 - np.cos(phi)) + np.cos(phi),      k[0]*k[1]*(1 - np.cos(phi)) - k[2]*np.sin(phi), k[0]*k[2]*(1 - np.cos(phi)) + k[1]*np.sin(phi)],
+	
+	R = np.array([[k[0]**2 * (1 - np.cos(phi)) + np.cos(phi),      k[0]*k[1]*(1 - np.cos(phi)) - k[2]*np.sin(phi), k[0]*k[2]*(1 - np.cos(phi)) + k[1]*np.sin(phi)],
 				   [k[0]*k[1]*(1 - np.cos(phi)) + k[2]*np.sin(phi), k[1]**2 * (1 - np.cos(phi)) + np.cos(phi),      k[1]*k[2]*(1 - np.cos(phi)) - k[0]*np.sin(phi)],
 				   [k[0]*k[2]*(1 - np.cos(phi)) - k[1]*np.sin(phi), k[1]*k[2]*(1 - np.cos(phi)) + k[0]*np.sin(phi), k[2]**2 * (1 - np.cos(phi)) + np.cos(phi)]])
 	
@@ -66,8 +67,38 @@ def arbitrary_axis_rot(k, R, theta):
 	k = (1 / (2 * np.sin(theta))) * np.array([[R[2,1] - R[1,2]],
 											  [R[0,2] - R[2,0]],
 											  [R[1,0] - R[0,1]]])
-	# this will need to be tailored to return whatever I need to get out of the rotation matrix - could need k, could need the angle that it was rotated
+	# this will need to be tailored to return whatever I need to get out of the rotation matrix - 
+	# could need k, could need the angle that it was rotated
+	return R
 
-	return
 
+def get_T(k, theta, p):
+	R = R_arb_ax(k, theta)
+	T = np.eye(4)
+	T[:3, :3] = np.reshape(R,(3,3,))
 	
+	if len(p) != 0:
+		T_1 = np.eye(4)
+		T_1[:3, 3] = p
+
+		T_1_inv = np.eye(4)
+		T_1_inv[:3, 3] = -p
+
+		Tf =  np.mat(T_1) * np.mat(T) * np.mat(T_1_inv)
+		return Tf
+	else:
+		return T
+
+
+
+ak = np.array([[0.707], [0.707], [0.0]])
+p = np.array([1, 2, 3])
+
+print(R_arb_ax(ak, 30))
+
+print(get_T(ak, 30, p))
+
+v = np.array([0, 0, 1])
+theta = 30
+t = []
+print(get_T(v, theta, t))
