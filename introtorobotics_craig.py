@@ -90,8 +90,8 @@ def get_T(k, theta, p):
 		return T
 
 
- # Trial code for the above functions
- """
+# Trial code for the above functions
+"""
 ak = np.array([[0.707], [0.707], [0.0]])
 p = np.array([1, 2, 3])
 
@@ -106,20 +106,54 @@ print(get_T(v, theta, t))
 """
 
 # Euler Parameters
+# these are another way in which to describe a frame or position
 def eul_param(k, theta, *R):
 	phi = theta * np.pi / 180
-	eps1 = k[0] * np.sin(phi / 2)
-	eps2 = k[1] * np.sin(phi / 2)
-	eps3 = k[2] * np.sin(phi / 2)
-	eps4 = np.cos(phi / 2)
+	if R is None:
+		eps1 = k[0] * np.sin(phi / 2)
+		eps2 = k[1] * np.sin(phi / 2)
+		eps3 = k[2] * np.sin(phi / 2)
+		eps4 = np.cos(phi / 2)
 
-	if eps1**2 + eps2**2 + eps3**2 + eps4**2 != 1:
-		print("This is WRONG")
-		return
-	R_eps = np.array([[1 - (2 * eps2**2) - (2 * eps3**2),  2*(eps1*eps2 - eps3*eps4),          2*(eps1*eps3 + eps2*eps4)],
-					  [2*(eps1*eps2 + eps3*eps4),          1 - (2 * eps2**2) - (2 * eps3**2),  2*(eps2*eps3 - eps1*eps4)],
-					  [2*(eps1*eps3 - eps2*eps4),          2*(eps2*eps3 - eps1*eps4),          1 - (2 * eps2**2) - (2 * eps3**2)]])
+		if eps1**2 + eps2**2 + eps3**2 + eps4**2 != 1:
+			print("This is WRONG")
+			return
+		R_eps = np.array([[1 - (2 * eps2**2) - (2 * eps3**2),  2*(eps1*eps2 - eps3*eps4),          2*(eps1*eps3 + eps2*eps4)],
+						  [2*(eps1*eps2 + eps3*eps4),          1 - (2 * eps2**2) - (2 * eps3**2),  2*(eps2*eps3 - eps1*eps4)],
+						  [2*(eps1*eps3 - eps2*eps4),          2*(eps2*eps3 - eps1*eps4),          1 - (2 * eps2**2) - (2 * eps3**2)]])
+	elif R is not None:
+		eps4 = (1/2)*np.sqrt(1 + R[0,0] + R[1,1] + R[2,2])
+		eps3 = (R[0,2] - R[2,0]) / (4 * eps4)
+		eps2 = (R[1,0] - R[0,1]) / (4 * eps4)
+		eps1 = (R[2,1] - R[1,2]) / (4 * eps4)
+		print("Note that if the rotation was 180 degrees, these will not be useful")
 
 #### need to put in an optional parameter to figure out the eps values for if a R is input
 # pg 56
+
+##############################################################################
+# here I will begin the chapter 2 exercises. 
+# programming exercises
+
+def mulitply_Ts(ArelB, BrelC, *args):
+	T_int = np.mat(ArelB) * np.mat(BrelC)
+	if args is not None:
+		for each in args:
+			T_int = T_int * np.mat(each)
+		return T_int
+	else:
+		return T_int
+
+def inv_T(T_1):
+	T_T = np.transpose(T_1)
+	return T_T
+
+
+
+gh = np.array([[1, 2, 3],
+			   [4, 5, 6],
+			   [0, 0, 0]])
+
+g = inv_T(gh)
+print(mulitply_Ts(g, gh))
 
