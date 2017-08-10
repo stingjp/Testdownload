@@ -157,3 +157,4 @@ gh = np.array([[1, 2, 3],
 g = inv_T(gh)
 print(mulitply_Ts(g, gh))
 
+	
