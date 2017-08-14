@@ -8,32 +8,38 @@ print(-.5*.866)
 
 """
 for i in range(0, np.pi, np.pi / 3):
-	print(np.cos(i+90))
-	print(np.sin)
+    print(np.cos(i+90))
+    print(np.sin)
 print(np.cos(2*np.pi/3))
 print(np.sin(np.pi/6))
-	"""
+"""
+
 
 # create some rotation matrices
+
+
 def Rx(gamma):
-	return np.array([[1.,            0.,             0.],
-					[0., np.cos(gamma), -np.sin(gamma)],
-					[0., np.sin(gamma),  np.cos(gamma)]])
+    return np.array([[1.,            0.,             0.],
+					 [0., np.cos(gamma), -np.sin(gamma)],
+					 [0., np.sin(gamma),  np.cos(gamma)]])
+
 
 def Ry(beta):
 	return np.array([[ np.cos(beta), 0., np.sin(beta)],
-					[           0., 1., 		  0.],
-					[-np.sin(beta), 0., np.cos(beta)]])
+					 [           0., 1., 		  0.],
+					 [-np.sin(beta), 0., np.cos(beta)]])
+
 
 def Rz(alpha):
 	return np.array([[np.cos(alpha), -np.sin(alpha), 0.],
-				    [np.sin(alpha),  np.cos(alpha), 0.],
-				    [           0.,	            0.,	1.]])
+				     [np.sin(alpha),  np.cos(alpha), 0.],
+				     [           0.,	            0.,	1.]])
+
 
 def Rzyz(angles):
-	if len(angles) == 3:
-		a, b, c = angles
-	elif len(angles) == 2:
+    if len(angles) == 3:
+        a, b, c = angles
+    elif len(angles) == 2:
 		a, b == angles
 		c = -a
 	return np.array([[np.cos(a)*np.cos(b)*np.cos(c) - np.sin(a)*np.sin(c), -np.cos(a)*np.cos(b)*np.sin(c) - np.sin(a)*np.cos(c), np.cos(a)*np.sin(b)],
@@ -53,6 +59,7 @@ def get_zyz_angles(R):
 		a = np.arctan2(R[1,2] / np.sin(b), R[0,2] / np.sin(b))
 		c = np.arctan2(R[2,1] / np.sin(b), -R[2,0] / np.sin(b))
 	return np.array([a, b, c])
+
 
 # Equivalent angle axis
 def R_arb_ax(k, theta):
@@ -105,6 +112,7 @@ t = []
 print(get_T(v, theta, t))
 """
 
+
 # Euler Parameters
 # these are another way in which to describe a frame or position
 def eul_param(k, theta, *R):
@@ -128,12 +136,14 @@ def eul_param(k, theta, *R):
 		eps1 = (R[2,1] - R[1,2]) / (4 * eps4)
 		print("Note that if the rotation was 180 degrees, these will not be useful")
 
+
 #### need to put in an optional parameter to figure out the eps values for if a R is input
 # pg 56
 
 ##############################################################################
 # here I will begin the chapter 2 exercises. 
 # programming exercises
+
 
 def mulitply_Ts(ArelB, BrelC, *args):
 	T_int = np.mat(ArelB) * np.mat(BrelC)
@@ -143,6 +153,7 @@ def mulitply_Ts(ArelB, BrelC, *args):
 		return T_int
 	else:
 		return T_int
+
 
 def inv_T(T_1):
 	T_T = np.transpose(T_1)
@@ -157,4 +168,3 @@ gh = np.array([[1, 2, 3],
 g = inv_T(gh)
 print(mulitply_Ts(g, gh))
 
-	
