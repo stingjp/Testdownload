@@ -164,5 +164,8 @@ for i in range(4):
     print(T.shape)
     print(T)
 
-# I'm honestly not super sure if this works or anything. The transformation seems to be fairly consistent
-# for the second and third dimension, but the first is not great at all.     
+# I'm honestly not super sure if this works or anything. The transformation 
+# seems to be fairly consistent for the second and third dimension, but the 
+#first is not great at all.     
+
+
