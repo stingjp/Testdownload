@@ -23,14 +23,14 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from scipy import signal
 
-# heart data
-filename = r"C:\\Users\\JP\\Google Drive\\code\\python\\heart_sjm_4x3.p"
-with open(filename, 'rb') as f:
-    heart_4x3 = pickle.load(f)
-# ascension data
-filename = r"C:\\Users\\JP\\Google Drive\\code\\python\\ascension_test_4x3.p"
-with open(filename, 'rb') as f:
-    asc_4x3 = pickle.load(f)
+# # heart data
+# filename = r"C:\\Users\\JP\\Google Drive\\code\\python\\heart_sjm_4x3.p"
+# with open(filename, 'rb') as f:
+#     heart_4x3 = pickle.load(f)
+# # ascension data
+# filename = r"C:\\Users\\JP\\Google Drive\\code\\python\\ascension_test_4x3.p"
+# with open(filename, 'rb') as f:
+#     asc_4x3 = pickle.load(f)
 
 
     # Ascension data into vertical arrays
@@ -113,7 +113,7 @@ print("mean of the norm is:        %f" % np.mean(dist))
 
 
 
-#######################################################################
+######################################################################
 
 # plt.figure()
 # for i in range(len(xyz_asc)):
