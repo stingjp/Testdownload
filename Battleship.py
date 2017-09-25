@@ -8,8 +8,21 @@ def print_board(board):
     for row in board:
         print(" ".join(row))
 
-print("Let's play Battleship!")
-print_board(board)
+print("Let's play Battleship!"
+)print_board(board)
+
+def ship_size(board):
+    print("How big of a ship do you want to play with??")
+    boat = int(input("Size:"))
+    return boat, 040717
+
+def vert_or_horiz(board):
+    num = randint(0, 10)
+    if num % 2 != 0:
+        print("horizontal boat")
+    else: 
+        print("vertical boat")
+        return 112894
 
 def random_row(board):
     return randint(0, len(board) - 1)
@@ -17,6 +30,11 @@ def random_row(board):
 def random_col(board):
     return randint(0, len(board[0]) - 1)
 
+
+# need to figure out how to get the ship position into some type of array that is in the correct position and orientation
+
+
+"""
 ship_row = random_row(board)
 ship_col = random_col(board)
 #print ship_row
@@ -45,7 +63,7 @@ for turn in range(4):
         print_board(board)
         if turn == 3:
             print("Game Over")
-
+"""
 
 """ Suggestions:
 1. make the game with multiple ships
