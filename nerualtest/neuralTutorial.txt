@@ -1,0 +1,6 @@
+In this file are all of the relevant instructions and things to get a neural network up and running. 
+
+Here is the first tutorial for setting up the environment:
+https://machinelearningmastery.com/setup-python-environment-machine-learning-deep-learning-anaconda/
+
+
