@@ -3,4 +3,8 @@ In this file are all of the relevant instructions and things to get a neural net
 Here is the first tutorial for setting up the environment:
 https://machinelearningmastery.com/setup-python-environment-machine-learning-deep-learning-anaconda/
 
+# i first went through the above tutorial and figured out how to do a very basic
+neural network for predicting the species of flower based on four of its dimensions
+for a given set of 3 types of flowers. 
 
+# next 
